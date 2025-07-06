@@ -24,6 +24,6 @@ class Solution {
             }
         }
 
-        return (int)tot;
+        return tot;
     }
 }
