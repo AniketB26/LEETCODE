@@ -21,13 +21,9 @@ class Solution {
         return true;
     }
 
-    private void solve(int row, int n, char[][] board, List<List<String>> output){
+    private void solve(int row, int n, char[][] board, int[] cnt){
         if(row == n){
-            List<String> ans = new ArrayList<>();
-            for(char[] rowans : board){
-                ans.add(new String(rowans));
-            }
-            output.add(ans);
+            cnt[0] = cnt[0] +1;
             return;
         }
 
@@ -35,13 +31,14 @@ class Solution {
 
             if(isSafe(n , row , col, board)){
                 board[row][col] = 'Q';
-                solve(row+1, n , board, output);
+                solve(row+1, n , board, cnt);
                 board[row][col] = '.';
             }
         }
     }
     public int totalNQueens(int n) {
-        List<List<String>> output = new ArrayList<>();
+        int[] cnt = new int[1];
+        cnt[0] = 0;
 
         char[][] board = new char[n][n];
 
@@ -49,8 +46,8 @@ class Solution {
             Arrays.fill(board[i], '.');
         }
 
-        solve(0, n, board, output);
+        solve(0, n, board, cnt);
 
-        return output.size();
+        return cnt[0];
     }
 }
