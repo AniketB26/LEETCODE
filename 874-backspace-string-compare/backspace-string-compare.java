@@ -25,10 +25,28 @@ class Solution {
 
 
     public boolean backspaceCompare(String s, String t) {
-        
-        StringBuilder ss = helper(s);
-        StringBuilder tt = helper(t);
-
-        return ss.toString().equals(tt.toString());
+        String ss = helper2(s);
+        String tt = helper2(t);
+        System.out.println(ss);
+        System.out.println(tt);
+        return ss.equals(tt);
     }
+
+    public String helper2(String s){
+        StringBuilder sb = new StringBuilder();
+
+        for(char i : s.toCharArray()){
+            if(i == '#'){
+                if(sb.length() > 0){
+                    sb.deleteCharAt(sb.length()-1);
+                }
+            }
+            else{
+                sb.append(i);
+            }
+        }
+
+        return sb.toString();
+    }
+
 }
