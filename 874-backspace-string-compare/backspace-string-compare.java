@@ -25,10 +25,7 @@ class Solution {
 
 
     public boolean backspaceCompare(String s, String t) {
-        String ss = helper2(s);
-        String tt = helper2(t);
-        
-        return ss.equals(tt);
+        return helper2(s).equals(helper2(t));
     }
 
     public String helper2(String s){
