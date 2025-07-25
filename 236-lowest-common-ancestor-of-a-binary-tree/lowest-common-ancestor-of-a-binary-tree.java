@@ -13,9 +13,7 @@ class Solution {
             return root;
         }
 
-        if(root == p || root == q){
-            return root;
-        }
+        
 
         TreeNode leftans = lowestCommonAncestor(root.left,p,q);
         TreeNode rightans = lowestCommonAncestor(root.right,p,q);
