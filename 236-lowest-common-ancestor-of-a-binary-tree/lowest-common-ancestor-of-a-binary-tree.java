@@ -18,18 +18,9 @@ class Solution {
         TreeNode leftans = lowestCommonAncestor(root.left,p,q);
         TreeNode rightans = lowestCommonAncestor(root.right,p,q);
 
-        if(leftans != null && rightans != null){
-            return root;
-        }
+        if(leftans == null) return rightans;
+        if(rightans == null) return leftans;
 
-        if(leftans != null && rightans == null){
-            return leftans;
-        }
-
-        if(leftans == null && rightans != null){
-            return rightans;
-        }
-
-        return null;
+        return root;
     }
 }
