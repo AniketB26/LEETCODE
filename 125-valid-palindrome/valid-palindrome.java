@@ -7,9 +7,10 @@ class Solution {
                 str.append(c);
             }
         }
-        String ss = str.toString();
-        String sr = str.reverse().toString();
 
-        return ss.equals(sr); 
+        s = str.toString();
+        String ss = str.reverse().toString();
+
+        return s.equals(ss);
     }
 }
