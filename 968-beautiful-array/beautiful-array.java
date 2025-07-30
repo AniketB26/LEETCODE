@@ -1,35 +1,34 @@
 class Solution {
     public int[] beautifulArray(int n) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
 
+        arr.add(1);
 
-        list.add(1);
+        while(arr.size() < n){
 
-        while(list.size() < n){
             List<Integer> temp = new ArrayList<>();
 
-
-            for(int num : list){
-                if(2*num -1 <= n){
+            for(int num : arr){
+                if(2*num -1 <=n){
                     temp.add(2*num-1);
                 }
             }
 
-            for(int num : list){
+            for(int num : arr){
                 if(2*num <= n){
                     temp.add(2*num);
                 }
             }
 
-            list = temp;
+            arr = temp;
         }
+
 
         int[] fin = new int[n];
 
-        for(int i =0; i<n; i++){
-            fin[i] = list.get(i);
+        for(int i =0; i<n ; i++){
+            fin[i] = arr.get(i);
         }
-
 
         return fin;
     }
