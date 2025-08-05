@@ -9,15 +9,15 @@ class Solution {
 
             if(nums[mid] == tar){
                 idx = mid;
-                right--;
+                right = mid-1;
             }
 
             else if(nums[mid] < tar){
-                left++;
+                left = mid+1;
             }
 
             else{
-                right--;
+                right = mid-1;
             }
         }
 
@@ -36,15 +36,15 @@ class Solution {
 
             if(nums[mid] == tar){
                 idx = mid;
-                left++;
+                left = mid+1;
             }
 
             else if(nums[mid] < tar){
-                left++;
+                left = mid+1;
             }
 
             else{
-                right--;
+                right = mid-1;
             }
         } 
         return idx;
