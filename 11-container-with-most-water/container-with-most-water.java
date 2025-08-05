@@ -8,8 +8,8 @@ class Solution {
 
         while(left < right){
             int h = Math.min(height[left] ,height[right]);
-            int b = right-left;
-            int area = h*b;
+           
+            int area = h*(right-left);
 
             maxarea = Math.max(maxarea,area);
 
