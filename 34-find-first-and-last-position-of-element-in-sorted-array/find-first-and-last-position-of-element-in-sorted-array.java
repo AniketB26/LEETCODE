@@ -51,10 +51,11 @@ class Solution {
     }
 
     public int[] searchRange(int[] nums, int target) {
-        int first = findfirst(nums,target);
-        int last = findlast(nums,target);
+        int[] arr = new int[2];
+        arr[0] = findfirst(nums,target);
+        arr[1] = findlast(nums,target);
 
 
-        return new int[]{first,last};
+        return arr;
     }
 }
