@@ -53,11 +53,10 @@ class Solution {
         
 
         int[] arr = new int[ls.size()];
-
-        for(int ii=0; ii< arr.length; ii++){
-            arr[ii] = ls.get(ii);
+        int i =0;
+        for(int a : ls){
+            arr[i++] = a;
         }
-        
         return arr;
     }
 }
