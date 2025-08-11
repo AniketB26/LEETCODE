@@ -30,7 +30,8 @@ class Solution {
 
         
         Deque<Integer> q = new LinkedList<>();
-        List<Integer> ls = new ArrayList<>();
+        int[] ls = new int[n-k+1];
+        int idx = 0;
         
         for(int i =0; i<n ; i++){
 
@@ -45,18 +46,13 @@ class Solution {
             q.offerLast(i);
 
             if(i >= k-1){
-                ls.add(nums[q.peekFirst()]);
+                ls[idx++] = nums[q.peekFirst()];
             }
         }
 
 
         
 
-        int[] arr = new int[ls.size()];
-        int i =0;
-        for(int a : ls){
-            arr[i++] = a;
-        }
-        return arr;
+       return ls;
     }
 }
