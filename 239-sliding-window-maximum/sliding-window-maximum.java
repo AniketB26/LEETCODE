@@ -29,30 +29,35 @@ class Solution {
         // return res;
 
         
-        Deque<Integer> q = new LinkedList<>();
-        int[] ls = new int[n-k+1];
+        int i =0, j =0;
+        Deque<Integer> dq = new LinkedList<>();
+        int[] res = new int[n-k+1];
         int idx = 0;
-        
-        for(int i =0; i<n ; i++){
 
-            if(!q.isEmpty() && q.peekFirst() <= i-k){
-                q.pollFirst();
+        while(j<n){
+
+            while(!dq.isEmpty() && dq.peekLast() < nums[j]){
+                dq.pollLast();
             }
 
-            while(!q.isEmpty() && nums[q.peekLast()] < nums[i]){
-                q.pollLast();
+            dq.offer(nums[j]);
+
+            if(j-i+1 < k){
+                j++;
             }
 
-            q.offerLast(i);
+            else if(j-i+1 == k){
+                res[idx++] = dq.peekFirst();
 
-            if(i >= k-1){
-                ls[idx++] = nums[q.peekFirst()];
+                if(dq.peekFirst() == nums[i]){
+                    dq.pollFirst();
+                }
+
+                i++;
+                j++;
             }
         }
 
-
-        
-
-       return ls;
+        return res;
     }
 }
