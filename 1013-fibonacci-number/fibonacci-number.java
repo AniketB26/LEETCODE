@@ -1,18 +1,13 @@
 class Solution {
     int helper(int n, int[] dp){
-        if(n==0) return 0;
+        if(n == 0) return 0;
         if(n == 1) return 1;
-        int first = dp[n-1];
-        int second = dp[n-2];
-        if(first == -1){
-            first = helper(n-1,dp);
-        }
-        if(second == -1){
-            second = helper(n-2,dp);
-        }
 
+        if(dp[n] != -1) return dp[n];
 
-        return first + second;
+        dp[n] = helper(n-1, dp) + helper(n-2, dp);
+
+        return dp[n];
             
         
     }
@@ -28,6 +23,6 @@ class Solution {
         Arrays.fill(dp,-1);
         
 
-        return helper2(n);
+        return helper(n, dp);
     }
 }
