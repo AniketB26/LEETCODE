@@ -15,7 +15,7 @@ class Solution {
         int sum = 0;
 
         for(int i =1; i<m; i++){
-            if(fre[i] == 0) continue;
+            // if(fre[i] == 0) continue;
 
             if(fre[i]%k == 0){
                 sum += (fre[i]*i);
