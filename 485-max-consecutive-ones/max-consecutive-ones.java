@@ -20,7 +20,7 @@ class Solution {
             }
         }
 
-        maxlen = Math.max(maxlen, len);
+        maxlen = Math.max(maxlen, r-l);
 
         return maxlen;
     }
