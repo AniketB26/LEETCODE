@@ -10,15 +10,13 @@ class Solution {
 
             
             
-            while(sum > target){
+            while(sum >= target){
                 len = Math.min(len, r-l+1);
                 sum -= nums[l];
                 l++;
             }
 
-            if(sum == target){
-                len = Math.min(len, r-l+1);
-            }
+            
         }
 
         return len == Integer.MAX_VALUE ? 0: len;
