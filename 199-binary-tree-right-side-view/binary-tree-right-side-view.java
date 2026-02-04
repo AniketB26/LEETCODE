@@ -28,39 +28,39 @@ class Solution {
     }
 
     public List<Integer> rightSideView(TreeNode root) {
-        // List<Integer> arr = new ArrayList<>();
-        // if(root == null){
-        //     return arr;
-        // }
-
-        // Queue<TreeNode> q = new LinkedList<>();
-
-        // q.offer(root);
-
-        // while(!q.isEmpty()){
-        //     int lvl = q.size();
-
-        //     for(int i =0; i< lvl; i++){
-        //         TreeNode x = q.poll();
-
-        //         if(i== lvl-1){
-        //             arr.add(x.val);
-        //         }
-
-        //         if(x.left != null){
-        //             q.offer(x.left);
-        //         }
-
-        //         if(x.right != null){
-        //             q.offer(x.right);
-        //         }
-        //     }
-        // }
-
-        // return arr;
-
         List<Integer> arr = new ArrayList<>();
-        helper(root, arr, 0);
+        if(root == null){
+            return arr;
+        }
+
+        Queue<TreeNode> q = new LinkedList<>();
+
+        q.offer(root);
+
+        while(!q.isEmpty()){
+            int lvl = q.size();
+
+            for(int i =0; i< lvl; i++){
+                TreeNode x = q.poll();
+
+                if(i== lvl-1){
+                    arr.add(x.val);
+                }
+
+                if(x.left != null){
+                    q.offer(x.left);
+                }
+
+                if(x.right != null){
+                    q.offer(x.right);
+                }
+            }
+        }
+
         return arr;
+
+        // List<Integer> arr = new ArrayList<>();
+        // helper(root, arr, 0);
+        // return arr;
     }
 }
