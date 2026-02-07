@@ -14,29 +14,27 @@ class Solution {
         ListNode j = list2;
         ListNode dummy = new ListNode(0);
         ListNode temp = dummy;
+        
+
         while(i != null && j != null){
             if(i.val <= j.val){
                 temp.next = i;
-                temp = temp.next;
                 i = i.next;
+                
             }
             else{
                 temp.next = j;
-                temp = temp.next;
                 j = j.next;
             }
-        }
 
-        while(i != null){
-            temp.next = i;
             temp = temp.next;
-            i = i.next;
         }
 
-         while(j != null){
+        if( i == null){
             temp.next = j;
-            temp = temp.next;
-            j = j.next;
+        }
+        else{
+            temp.next = i;
         }
 
         return dummy.next;
