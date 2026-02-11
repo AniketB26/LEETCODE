@@ -24,7 +24,7 @@ class Solution {
 
         int[][] dir = {{1,0}, {-1,0}, {0,1}, {0,-1}};
 
-
+        
         while(!q.isEmpty()){
 
             int[] cell = q.poll();
