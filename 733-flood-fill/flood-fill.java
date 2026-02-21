@@ -1,40 +1,34 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        Queue<int[]> q = new LinkedList<>();
+        int org = image[sr][sc];
+
+        if(org == color) return image;
+
+        int[][] dir = {{0,1},{1,0},{-1,0}, {0,-1}};
+        dfs(image, sr, sc, org, color,dir);
+
+        return image;
+
+
+
+    }
+
+
+    void dfs(int[][] image, int r, int c, int old, int neww, int[][] dir){
 
         int m = image.length;
         int n = image[0].length;
 
-        int org = image[sr][sc];
+        if(r < 0 || r >= m || c < 0 || c >= n || image[r][c] != old) return;
 
-        if(color == org) return image;
+        image[r][c] = neww;
 
-        q.offer(new int[]{sr,sc});
+        for(int[] d : dir){
+            int nr = r + d[0];
+            int nc = c + d[1];
 
-
-        int[][] dir = {{1,0},{-1,0}, {0,1}, {0,-1}}; 
-
-        image[sr][sc] = color;
-        while(!q.isEmpty()){
-
-            int[] cell = q.poll();
-
-            int r = cell[0], c = cell[1];
-
-
-            for(int[] d : dir){
-                int nr = r + d[0];
-                int nc = c + d[1];
-
-
-                if(nr >= 0 && nr < m && nc >= 0 && nc < n && image[nr][nc] == org){
-
-                    image[nr][nc] = color;
-                    q.offer(new int[]{nr,nc});
-                }
-            }
+            dfs(image, nr,nc,old,neww,dir);
         }
-
-        return image;
+        
     }
 }
