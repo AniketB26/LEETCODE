@@ -1,38 +1,24 @@
 class Solution {
-    public int fib(int n, int[] dp){
-        if(n == 0) return 1;
-        if(n == 1) return 1;
 
-        if(dp[n] != -1) return dp[n];
+    int helper(int n, int[] cnt ){
 
-        dp[n] =  fib(n-1, dp) + fib(n-2, dp);
-        return dp[n];
+        if(cnt[n] != 0) return cnt[n];
+        
+        if(n==0) return 1;
+        if(n==1) return 1;
+
+        int left = helper(n-1, cnt);
+        int right = helper(n-2, cnt);
+
+        cnt[n] = left+right;
+        return cnt[n];
     }
 
     public int climbStairs(int n) {
+        
+        int[] cnt = new int[n+1];
+        return helper(n, cnt);
 
         
-        
-        int[] dp = new int[n+1];
-
-        
-
-        // dp[0] =1;
-        // dp[1] = 1;
-        // int i =2;
-        // for(i =2; i<= n; i++){
-        //     dp[i] = dp[i-1] +dp[i-2];
-        // }
-         Arrays.fill(dp,-1);
-         dp[0] = dp[1] = 1;
-        
-
-       
-
-        return fib(n, dp);
-
-
-
-        // return fib(n);
     }
 }
