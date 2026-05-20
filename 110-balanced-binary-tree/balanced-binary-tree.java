@@ -36,7 +36,23 @@ class Solution {
         return Math.abs(left-right) <= 1 && helper(root.left) && helper(root.right); 
 
     }
+
+    int helper2(TreeNode root){
+
+        if(root == null) return 0;
+
+        int left = helper2(root.left);
+        if(left == -1) return -1;
+
+        int right = helper2(root.right);
+        if(right == -1) return -1;
+
+
+        if(Math.abs(left-right) > 1) return -1;
+
+        return Math.max(left,right) + 1;
+    }
     public boolean isBalanced(TreeNode root) {
-        return helper(root);
+        return helper2(root) != -1;
     }
 }
