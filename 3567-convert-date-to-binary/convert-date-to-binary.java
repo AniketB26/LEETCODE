@@ -21,7 +21,7 @@ class Solution {
 
             sb.append(n%2);
 
-            n /= 2;
+           n=  n>>1;
         }
 
 
