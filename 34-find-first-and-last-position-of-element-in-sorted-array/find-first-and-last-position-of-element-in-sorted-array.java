@@ -1,61 +1,58 @@
 class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+       int first = getfirst(nums,target);
+       int last = getlast(nums,target);
 
-    public int findfirst(int[] nums, int tar){
-        int left =0;
+       return new int[]{first,last};
+    }
+
+
+    int getfirst(int[] nums, int tar){
+        int left = 0;
         int right = nums.length-1;
-        int idx = -1;
+        int ind = -1;
+
         while(left <= right){
-            int mid = (left+right)/2;
+
+            int mid = left + (right-left)/2;
 
             if(nums[mid] == tar){
-                idx = mid;
+                ind = mid;
                 right = mid-1;
             }
-
             else if(nums[mid] < tar){
                 left = mid+1;
             }
-
             else{
                 right = mid-1;
             }
         }
 
-        return idx;
+        return ind;
     }
 
-
-    public int findlast(int[] nums, int tar ){
+    int getlast(int[] nums, int tar){
         int left = 0;
         int right = nums.length-1;
-
-        int idx = -1;
+        int ind = -1;
 
         while(left <= right){
-            int mid = (left+right)/2;
+
+            int mid = left + (right-left)/2;
 
             if(nums[mid] == tar){
-                idx = mid;
+                ind = mid;
                 left = mid+1;
             }
-
             else if(nums[mid] < tar){
                 left = mid+1;
             }
-
             else{
                 right = mid-1;
             }
-        } 
-        return idx;
-    }
+        }
 
-    public int[] searchRange(int[] nums, int target) {
-        int[] arr = new int[2];
-        arr[0] = findfirst(nums,target);
-        arr[1] = findlast(nums,target);
-
-
-        return arr;
+        return ind;
     }
 }
