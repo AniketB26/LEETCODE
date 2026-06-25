@@ -1,8 +1,7 @@
 class Solution {
     public int findMin(int[] nums) {
-        int n = nums.length;
-        int r = n-1;
-        int l = 0;
+        int l =0;
+        int r = nums.length-1;
 
         while(l < r){
 
