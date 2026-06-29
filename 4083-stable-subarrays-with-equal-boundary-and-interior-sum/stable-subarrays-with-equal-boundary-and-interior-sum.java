@@ -5,28 +5,29 @@ class Solution {
         long alpha = 0;
         long ans = 0;
 
+        long prevBeta = 0;
+        int prevVal = Integer.MIN_VALUE;
+
         for (int i = 0; i < capacity.length; i++) {
-            int ai = capacity[i];
 
             // Query using prefix[i]
             if (map.containsKey(alpha)) {
-                ans += map.get(alpha).getOrDefault(ai, 0);
-            }
-
-            // Remove the invalid length-2 subarray [0, 0]
-            if (i > 0 && ai == 0 && capacity[i - 1] == 0) {
-                ans--;
+                ans += map.get(alpha).getOrDefault(capacity[i], 0);
             }
 
             // Update prefix to prefix[i + 1]
-            alpha += ai;
+            alpha += capacity[i];
 
-            // Store prefix[i + 1] + capacity[i]
-            long beta = alpha + ai;
+            // Now insert the previous index
+            if (prevVal != Integer.MIN_VALUE) {
+                map.putIfAbsent(prevBeta, new HashMap<>());
+                HashMap<Integer, Integer> inner = map.get(prevBeta);
+                inner.put(prevVal, inner.getOrDefault(prevVal, 0) + 1);
+            }
 
-            map.putIfAbsent(beta, new HashMap<>());
-            HashMap<Integer, Integer> inner = map.get(beta);
-            inner.put(ai, inner.getOrDefault(ai, 0) + 1);
+            // Save current index for the next iteration
+            prevBeta = alpha + capacity[i];
+            prevVal = capacity[i];
         }
 
         return ans;
