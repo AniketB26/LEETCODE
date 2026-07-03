@@ -1,42 +1,60 @@
 class Solution {
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> graph = new ArrayList<>();
 
-        for(int i=0; i<numCourses; i++){
-            graph.add(new ArrayList<>());
-        }
+    private boolean dfs(ArrayList<ArrayList<Integer>> adj, int node,
+                        Stack<Integer> st, boolean[] vis, boolean[] pathVis) {
 
-        int[] indgree = new int[numCourses];
+        vis[node] = true;
+        pathVis[node] = true;
 
-        for(int[] p : prerequisites){
-            int cou = p[0];
-            int pre = p[1];
+        for (int neighbor : adj.get(node)) {
 
-            graph.get(pre).add(cou);
-            indgree[cou]++;
-        }
-
-
-        Queue<Integer> q = new LinkedList<>();
-
-        for(int i =0; i<numCourses; i++){
-            if(indgree[i] == 0) q.offer(i);
-        }
-
-        int cnt =0;
-
-        while(!q.isEmpty()){
-            int node = q.poll();
-            cnt++;
-
-            for(int n: graph.get(node) ){
-                indgree[n]--;
-
-                if(indgree[n] == 0) q.offer(n);
-
+            if (!vis[neighbor]) {
+                if (dfs(adj, neighbor, st, vis, pathVis))
+                    return true;
+            } else if (pathVis[neighbor]) {
+                return true; 
             }
         }
 
-        return cnt == numCourses;
+        pathVis[node] = false;
+        st.push(node); 
+        return false;
+    }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+        for(int i=0; i<numCourses; i++){
+
+            adj.add(new ArrayList<>());
+        }
+
+        for(int[] edge : prerequisites){
+
+            int v = edge[0];
+            int u = edge[1];
+
+            adj.get(v).add(u);
+        }
+
+        boolean[] vis = new boolean[numCourses];
+        boolean[] pathVis = new boolean[numCourses];
+        Stack<Integer> st = new Stack<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!vis[i]) {
+                if (dfs(adj, i, st, vis, pathVis))
+                    return false;
+            }
+        }
+
+        
+        while (!st.isEmpty()) {
+            st.pop();
+        }
+
+        return true;
+
     }
 }
