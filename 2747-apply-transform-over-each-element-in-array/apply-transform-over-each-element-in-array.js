@@ -9,15 +9,19 @@
 
 var map = function(arr, fn) {
     
-    const res = [];
+    // const res = [];
 
-    for(let i =0; i<arr.length; i++){
+    // for(let i =0; i<arr.length; i++){
 
-        res[i] = fn(arr[i], i);
-    }
+    //     res[i] = fn(arr[i], i);
+    // }
 
-    return res;
+    // return res;
 
+    return arr.map((n,i) => {
+        return fn(n,i);
+    })
 
+    
     
 };
