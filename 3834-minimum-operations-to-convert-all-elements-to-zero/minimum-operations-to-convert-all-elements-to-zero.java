@@ -1,23 +1,21 @@
 class Solution {
     public int minOperations(int[] nums) {
-        Stack<Integer> stk = new Stack<>();
-        int ans = 0;
-        stk.push(0);
 
-        for(int n : nums){
+        Stack<Integer> st = new Stack<>();
+        int cnt = 0;
 
-            while(!stk.isEmpty() && stk.peek() > n){
-                stk.pop();
+        for (int n : nums) {
+
+            while (!st.isEmpty() && st.peek() > n) {
+                st.pop();
+                cnt++;
             }
 
-            if(stk.isEmpty() || stk.peek() < n){
-                
-                
-                ans++;
-                stk.push(n);
+            if (n != 0 && (st.isEmpty() || st.peek() != n)) {
+                st.push(n);
             }
         }
 
-        return ans;
+        return cnt + st.size();
     }
 }
