@@ -1,65 +1,45 @@
 class MinStack {
-    long mini = Long.MAX_VALUE;
-     Stack<Long> stk;
-    
-
-
+    Stack<Integer> st;
+    Stack<Integer> minst;
     public MinStack() {
-       stk = new Stack<Long>();
+        st = new Stack<>();
+        minst = new Stack<>();
     }
     
-    public void push(int vall) {
-        long val = vall;
-        if(stk.isEmpty()){
-            stk.add(val);
-            mini = val;
-        }
+    public void push(int value) {
+        
+        st.push(value);
 
-        else{
-            if(val < mini){
-                
-                long data = 2*val- mini;
-                stk.push(data);
-                mini = val;
-            }
-            else{
-                stk.push(val);
-            }
+        if(minst.isEmpty() || value <= minst.peek()){
+            minst.push(value);
         }
     }
     
     public void pop() {
-        if (stk.isEmpty()) return;
-        long curr = stk.pop();
-        if (curr < mini) {  
-            // curr is the encoded value
-            mini = 2 * mini - curr; 
+
+        if(st.peek().equals(minst.peek())){
+            minst.pop();
         }
 
+        st.pop();
+        
     }
     
     public int top() {
-        if(stk.isEmpty()) return -1;
-        long curr = stk.peek();
-        if(curr < mini){
-            return (int)mini;
-        }
-        else{
-            return (int)curr;
-        }
+
+        return st.peek();
+        
     }
     
     public int getMin() {
-        if(stk.isEmpty()) return -1;
-
-        return (int)mini;
+        return minst.peek();
     }
 }
 
 /**
  * Your MinStack object will be instantiated and called as such:
  * MinStack obj = new MinStack();
- * obj.push(val);
+ * obj.push(value);
  * obj.pop();
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
