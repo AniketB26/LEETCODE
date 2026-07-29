@@ -1,38 +1,21 @@
 class Solution {
-    int helper(int n, int[] dp){
-        if(n == 0) return 0;
-        if(n == 1) return 1;
+    public int fib(int n) {
 
-        if(dp[n] != -1) return dp[n];
-
-        dp[n] = helper(n-1, dp) + helper(n-2, dp);
-
-        return dp[n];
-            
-        
-    }
-
-    int helper2(int n ){
         if(n==0) return 0;
         if(n==1) return 1;
-
-        return helper2(n-1) + helper2(n-2);
-    }
-    public int fib(int n) {
-        if(n == 0) return 0;
-        if(n == 1) return 1;
-        int[] dp = new int[n+1];
-        dp[0] = 0;
-        dp[1] = 1;
-        // Arrays.fill(dp,-1);
         
+        int cnt = 1;
+        int a = 0;
+        int b = 1;
+        int c = 1;
 
-        // return helper(n, dp);
-
-        for(int i =2; i<= n; i++){
-            dp[i] = dp[i-1] + dp[i-2];
+        while(cnt < n){
+            c = a+b;
+            a = b;
+            b = c;
+            cnt++;
         }
 
-        return dp[n];
+        return c;
     }
 }
